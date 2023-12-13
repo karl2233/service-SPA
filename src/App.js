@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import UpdateUser from './pages/UpdateUser';
+import AddUser from './pages/AddUser';
+import UserList from './pages/UserList';
+import DeleteUser from './pages/DeleteUser';
+import Loader from './components/Loader';
+import {useSelector} from "react-redux";
 function App() {
+  const {loader} = useSelector(state => state.loaderReducer)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+    {loader && <Loader/>}
+    <BrowserRouter>
+     <Routes>
+      <Route path="/Add" element={<AddUser/>}/>
+      <Route path="/Update" element={<UpdateUser/>}/>
+      <Route path="/Users" element={<UserList/>}/>
+      <Route path="/Delete" element={<DeleteUser/>}/>
+     </Routes>
+     </BrowserRouter>  
+     </div>   
   );
 }
 
