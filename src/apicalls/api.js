@@ -5,12 +5,12 @@ export const AddUserApi = async(user)=>{
     try{
        const response = await axios.post("http://localhost:8082/api/v1/customers/employees",user
         );
-        console.log(response.data);
-        const res = response.data.statusReason +" "+response.data.countryName+" "+response.data.phoneNumber
-       alert(res);
-       //return response.data;
+        console.log(response);
+        const res = response.data.statusString +" "+response.data.countryName+" "+response.data.phoneNumber
+         alert(res);
+        return response.data;
     }catch(error){
-        alert(error.response.data.statusReason)
+        alert(error.response.data.statusString)
         return error
     }
 };
@@ -32,10 +32,11 @@ export const UpdateUserApi= async(user)=>{
     try{
        const response = await axios.post("http://localhost:8082/api/v1/customers/employees/update",user
         );
-        const res = response.data.statusReason +" "+response.data.countryName+" "+response.data.phoneNumber
-        alert(res);
+        const res = response.data.statusString +" "+response.data.countryName+" "+response.data.phoneNumber
+         alert(res);
+        return response.data;
     }catch(error){
-        alert(error.response.data.statusReason)
+        alert(error.response.data.statusString)
         return error
     }
 };
